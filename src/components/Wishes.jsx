@@ -101,7 +101,7 @@ const Wishes = () => {
             {/* Masonry-like Grid */}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', // Responsive Grid for Mobile
                 gap: '3rem 2rem',
                 maxWidth: '1200px',
                 margin: '0 auto',

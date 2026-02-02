@@ -101,7 +101,7 @@ const CelestialReasons = () => {
 
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(5, 1fr)',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', // Responsive Grid
                 gridGap: '20px',
                 padding: '2rem',
                 paddingBottom: '150px', // Extra padding for scrolling

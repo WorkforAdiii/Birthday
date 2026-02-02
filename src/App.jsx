@@ -26,29 +26,51 @@ const TopNav = ({ current, onChange }) => {
     { id: 'wishes', icon: <HeartFilled />, label: 'Wishes' },
   ];
 
+  // Responsive check
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const containerStyle = isMobile ? {
+    position: 'fixed',
+    bottom: 20,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    zIndex: 1000,
+    display: 'flex',
+    gap: '20px',
+    padding: '10px 20px',
+    background: 'rgba(255, 255, 255, 0.1)',
+    backdropFilter: 'blur(10px)',
+    borderRadius: '30px',
+    border: '1px solid rgba(255,255,255,0.2)',
+    boxShadow: '0 5px 20px rgba(0,0,0,0.2)'
+  } : {
+    position: 'fixed',
+    top: 30,
+    right: 30,
+    zIndex: 1000,
+    display: 'flex',
+    gap: '15px'
+  };
+
   return (
-    <div style={{
-      position: 'fixed',
-      top: 30,
-      right: 30,
-      zIndex: 1000,
-      display: 'flex',
-      gap: '15px'
-    }}>
+    <div style={containerStyle}>
       {navItems.map(item => {
         const isActive = current === item.id;
         return (
-          <Tooltip title={item.label} placement="bottom" key={item.id}>
+          <Tooltip title={item.label} placement={isMobile ? "top" : "bottom"} key={item.id}>
             <motion.div
               onClick={() => onChange(item.id)}
               whileHover={{ scale: 1.2, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
               style={{
-                width: 50,
-                height: 50,
+                width: isMobile ? 40 : 50,
+                height: isMobile ? 40 : 50,
                 borderRadius: '50%',
                 background: isActive ? '#D4145A' : 'rgba(255, 255, 255, 0.25)',
                 backdropFilter: 'blur(10px)',
@@ -59,7 +81,7 @@ const TopNav = ({ current, onChange }) => {
                 color: isActive ? '#fff' : '#fff',
                 border: '1px solid rgba(255,255,255,0.4)',
                 boxShadow: isActive ? '0 0 15px #D4145A' : '0 5px 15px rgba(0,0,0,0.1)',
-                fontSize: '1.2rem',
+                fontSize: isMobile ? '1rem' : '1.2rem',
                 transition: 'background 0.3s ease'
               }}
             >

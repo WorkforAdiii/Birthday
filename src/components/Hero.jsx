@@ -142,7 +142,7 @@ const Hero = ({ name = "Chaii 💕", onMakeWish }) => {
                 <h1 style={{
                     fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
-                    fontSize: '5rem',
+                    fontSize: window.innerWidth < 768 ? '3rem' : '5rem', // Responsive Font Size
                     margin: 0,
                     marginBottom: '1rem',
                     color: '#fff',
@@ -158,7 +158,7 @@ const Hero = ({ name = "Chaii 💕", onMakeWish }) => {
                     style={{
                         fontFamily: "'Playfair Display', serif",
                         fontWeight: 700,
-                        fontSize: '6rem',
+                        fontSize: window.innerWidth < 768 ? '3.5rem' : '6rem', // Responsive Font Size
                         margin: 0,
                         lineHeight: 0.8,
                         background: 'linear-gradient(45deg, #fff, #00FFFF)',
